@@ -1,0 +1,40 @@
+image:
+  repository: usermanagement
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+replicaCount: 1
+
+jwt:
+  secretKey: "kheyligavi"
+  expirationHours: 24
+  refreshExpirationHours: 168
+
+postgresql:
+  auth:
+    username: postgres
+    password: "1234"
+    database: user_management
+  primary:
+    persistence:
+      enabled: false
+      
+redis:
+  architecture: standalone
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: false

@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-config
+  labels:
+    app: {{ .Chart.Name }}
+data:
+  config.yaml: |
+    server:
+      port: {{ .Values.service.port }}
+
+    postgres:
+      host: "{{ .Release.Name }}-postgresql"
+      port: 5432
+      user: "{{ .Values.postgresql.auth.username }}"
+      password: "{{ .Values.postgresql.auth.password }}"
+      db: "{{ .Values.postgresql.auth.database }}"
+      sslmode: "disable"
+
+    redis:
+      addr: "{{ .Release.Name }}-redis-master:6379"
+      password: ""
+      db: 0
+
+    jwt:
+      secret_key: "{{ .Values.jwt.secretKey }}"
+      expiration_hours: {{ .Values.jwt.expirationHours }}
+      refresh_expiration_hours: {{ .Values.jwt.refreshExpirationHours }}

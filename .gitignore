@@ -1,0 +1,22 @@
+/cli
+user-cli
+usermanagement
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.log
+*.out
+*.tmp
+
+.env
+.env.*
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+deployment/tmp/
